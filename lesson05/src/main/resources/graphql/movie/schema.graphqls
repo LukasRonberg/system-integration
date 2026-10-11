@@ -1,0 +1,70 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+
+# QUERIES
+#Movies by genre and average rating
+#Users
+type Query {
+    movieById(id: ID!): Movie
+    movies: [Movie!]!
+    moviesByGenreAndAverageRating(genre: Genre, rating:Float ): [Movie!]!
+    users:[User!]!
+}
+
+type Mutation {
+    addMovie(
+        title: String!
+        genre: Genre!
+        duration: Float!
+    ): Movie!
+}
+
+# MODELS
+type Movie {
+    id: ID!
+    title: String
+    genre: Genre!
+    duration: Float
+    rating: Float
+    isAvailable: Boolean
+    movieDetails: MovieDetails!
+    cast: [Person!]!
+}
+
+type MovieDetails {
+    releaseYear: Int
+    language: String
+    ageRating: String
+}
+
+type Person {
+    id: ID!
+    name: String
+    role: String
+}
+
+type User {
+    id: ID!
+    username: String
+    email: String
+    hasSubscription: Boolean
+    favouriteMovies: [Movie!]!
+}
+
+# ENUMS
+
+enum Genre {
+    ACTION
+    COMEDY
+    DRAMA
+    HORROR
+    SCIFI
+    OTHER
+}
+
+
+
+

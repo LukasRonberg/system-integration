@@ -1,0 +1,46 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+## Model
+type Task {
+    title: String
+    completed: Boolean
+}
+
+## Queries
+# Get all tasks
+type Query {
+    tasks: [Task!]!
+    task(title: String!): Task
+}
+
+## Mutations
+type TaskPayload {
+    success: Boolean!
+    task: Task
+}
+
+type DeleteTaskPayload {
+    success: Boolean!
+    deletedTask: Task
+}
+
+type Mutation {
+    addTask(
+        title: String!
+    ): TaskPayload!
+
+    updateTask(
+        title: String!
+        newTitle: String
+        completed: Boolean
+    ): TaskPayload!
+
+    deleteTask(
+        title: String!
+    ): DeleteTaskPayload!
+}
+
+

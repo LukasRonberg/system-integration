@@ -1,0 +1,37 @@
+#Get the titles of all movies
+query getTitlesOfAllMovies {
+    movies {
+        title
+    }
+}
+
+#Get a movie by ID
+query getMovieById {
+    movieById(id: 1){
+        title
+    }
+}
+
+#Get all action movies with an average rating of 4.0
+query getMoviesByAverageRatingOfFour {
+    moviesByGenreAndAverageRating(genre: ACTION, rating: 4.0){
+        title
+    }
+}
+
+#Get all users with their favourite movies
+query getUsersAndFavouriteMovies {
+    users{
+        favouriteMovies {
+            title
+        }
+    }
+}
+
+#Write a mutation to add the film Inception (science-fiction, 148 minutes).
+mutation addMovieInception {
+    addMovie(title: "Inception",genre: SCIFI,duration: 148) {
+        id
+        title
+    }
+}

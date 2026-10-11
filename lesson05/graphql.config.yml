@@ -1,0 +1,18 @@
+projects:
+  api:
+    schema: src/main/resources/graphql/api/*.graphqls
+    documents: src/main/resources/graphql/api/*.graphql
+    extensions:
+      endpoints:
+        api:
+          url: http://localhost:8080/graphql
+          introspect: false
+
+  movie:
+    schema: src/main/resources/graphql/movie/*.graphqls
+    documents: src/main/resources/graphql/movie/*.graphql
+    extensions:
+      endpoints:
+        movie:
+          url: http://localhost:8080/graphql
+          introspect: false

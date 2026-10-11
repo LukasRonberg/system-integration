@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.app</groupId>
+        <artifactId>system-integration</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>lesson04</artifactId>
+    <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jaxws.version>4.0.2</jaxws.version>
+    </properties>
+
+    <dependencies>
+        <!-- Jakarta XML Web Services runtime (Metro): APIs + wsgen + Endpoint -->
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>${jaxws.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Option A: generate the WSDL to a file during the build.
+                 Runs wsgen on the endpoint impl; output under target/generated-sources/wsdl. -->
+            <plugin>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>${jaxws.version}</version>
+                <executions>
+                    <execution>
+                        <id>gen-wsdl</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                        <configuration>
+                            <sei>com.example.airline.service.AirlineServiceImpl</sei>
+                            <genWsdl>true</genWsdl>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Option B: run the publisher (serves the WSDL at ?wsdl). -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <mainClass>com.example.airline.AirlinePublisher</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+

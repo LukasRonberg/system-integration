@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orders>
+    <order ref="ORD-001" express="true">
+        <customer>Lars Hansen</customer>
+        <payment>
+            <card>4111</card>
+        </payment>
+        <items>
+            <item qty="2">Mechanical Keyboard</item>
+            <item qty="1">4K Monitor</item>
+        </items>
+    </order>
+
+    <order ref="ORD-002" express="false">
+        <customer>Maria Holm</customer>
+        <payment>
+            <invoice>NET30</invoice>
+        </payment>
+        <items>
+            <item qty="3">USB-C Cable</item>
+        </items>
+    </order>
+</orders>
